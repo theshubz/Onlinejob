@@ -21,34 +21,44 @@
 				  	</tr>	
 				  </thead> 
 				  <tbody>
-				  	<?php 
-				  		// $mydb->setQuery("SELECT * 
-								// 			FROM  `tblusers` WHERE TYPE != 'Customer'");
-				  		$mydb->setQuery("SELECT * 
-											FROM  `tblusers`");
-				  		$cur = $mydb->loadResultList();
+				  <?php 
+// Check if the 'ADMIN_USERID' session key is set
+if(isset($_SESSION['ADMIN_USERID'])) {
+    // Proceed with fetching user data and displaying the table
+    $mydb->setQuery("SELECT * FROM  `tblusers`");
+    $cur = $mydb->loadResultList();
 
-						foreach ($cur as $result) {
-				  		echo '<tr>';
-				  		// echo '<td width="5%" align="center"></td>';
-				  		echo '<td>' . $result->USERID.'</a></td>';
-				  		echo '<td>' . $result->FULLNAME.'</a></td>';
-				  		echo '<td>'. $result->USERNAME.'</td>';
-				  		echo '<td>'. $result->ROLE.'</td>';
-				  		If($result->USERID==$_SESSION['ADMIN_USERID'] || $result->ROLE=='MainAdministrator' || $result->ROLE=='Administrator') {
-				  			$active = "Disabled";
+    foreach ($cur as $result) {
+        echo '<tr>';
+        echo '<td>' . $result->USERID.'</a></td>';
+        echo '<td>' . $result->FULLNAME.'</a></td>';
+        echo '<td>'. $result->USERNAME.'</td>';
+        echo '<td>'. $result->ROLE.'</td>';
 
-				  		}else{
-				  			$active = "";
+        // Check conditions for disabling buttons based on user role or ID
+        if($result->USERID == $_SESSION['ADMIN_USERID'] || $result->ROLE == 'MainAdministrator' || $result->ROLE == 'Administrator') {
+            $active = "Disabled";
+        } else {
+            $active = "";
+        }
 
-				  		}
+        echo '<td align="center"> 
+                  <a title="Edit" href="index.php?view=edit&id='.$result->USERID.'"  class="btn btn-primary btn-xs">  
+                      <span class="fa fa-edit fw-fa"></span>
+                  </a>
+                  <a title="Delete" href="controller.php?action=delete&id='.$result->USERID.'" class="btn btn-danger btn-xs" '.$active.'>
+                      <span class="fa fa-trash-o fw-fa"></span>
+                  </a>
+              </td>';
+        echo '</tr>';
+    }
+} else {
+    // Handle the case where 'ADMIN_USERID' is not set
+    // You might display an error message or redirect the user
+    echo "<p>Admin user ID is not set.</p>";
+}
+?>
 
-				  		echo '<td align="center" > <a title="Edit" href="index.php?view=edit&id='.$result->USERID.'"  class="btn btn-primary btn-xs  ">  <span class="fa fa-edit fw-fa"></span></a>
-				  					 <a title="Delete" href="controller.php?action=delete&id='.$result->USERID.'" class="btn btn-danger btn-xs" '.$active.'><span class="fa fa-trash-o fw-fa"></span> </a>
-				  					 </td>';
-				  		echo '</tr>';
-				  	} 
-				  	?>
 				  </tbody>
 					
 				</table>  

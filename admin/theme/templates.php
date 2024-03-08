@@ -65,38 +65,41 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
  
-          <?php
-              $user = New User();
-              $singleuser = $user->single_user($_SESSION['ADMIN_USERID']);
+        <?php
+if(isset($_SESSION['ADMIN_USERID'])) {
+    $user = new User();
+    $singleuser = $user->single_user($_SESSION['ADMIN_USERID']);
+}
+?>
 
-          ?>
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu" style="padding-right: 15px;"  >
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $singleuser->FULLNAME; ?></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header"> 
-                <img data-target="#menuModal"  data-toggle="modal"  src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" class="img-circle" alt="User Image" />  
-              </li> 
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="<?php echo web_root.'admin/user/index.php?view=view&id='.$_SESSION['ADMIN_USERID'] ;?>" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="<?php echo web_root ;?>admin/logout.php" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          
-        </ul>
-      </div>
-    </nav>
+        <!-- User Account: style can be found in dropdown.less -->
+<?php if(isset($singleuser)): ?>
+<li class="dropdown user user-menu" style="padding-right: 15px;">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <img src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" class="user-image" alt="User Image">
+        <span class="hidden-xs"><?php echo $singleuser->FULLNAME; ?></span>
+    </a>
+    <ul class="dropdown-menu">
+        <!-- User image -->
+        <li class="user-header"> 
+            <img data-target="#menuModal"  data-toggle="modal"  src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" class="img-circle" alt="User Image" />  
+        </li> 
+        <!-- Menu Footer-->
+        <li class="user-footer">
+            <div class="pull-left">
+                <a href="<?php echo web_root.'admin/user/index.php?view=view&id='.$_SESSION['ADMIN_USERID'] ;?>" class="btn btn-default btn-flat">Profile</a>
+            </div>
+            <div class="pull-right">
+                <a href="<?php echo web_root ;?>admin/logout.php" class="btn btn-default btn-flat">Sign out</a>
+            </div>
+        </li>
+    </ul>
+</li>
+<?php endif; ?>
+<!-- Control Sidebar Toggle Button -->
+</ul>
+</div>
+</nav>
   </header>
 
 

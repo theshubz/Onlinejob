@@ -41,6 +41,7 @@ switch ($action) {
 			$company->create();
 
 			message("New company created successfully!", "success");
+			echo "<script>alert('New company created successfully!');
 			redirect("index.php");
 			
 		}

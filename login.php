@@ -44,7 +44,7 @@
                         
                           <a href="index.php?q=register" class="text-center">New User ? Register first</a>
                           <br><br>
-                          <a href="https://opportunityjunction.azurewebsites.net/admin/login.php" class="text-center">ADMIN LOGIN PAGE</a>
+                          <a href="https://opporunityjs.azurewebsites.net/admin/login.php" class="text-center">ADMIN LOGIN PAGE</a>
 
                         </div>
                        

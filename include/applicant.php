@@ -1,6 +1,6 @@
 <?php
 require_once('database.php');
-class ApplicantS {
+class Applicant {
 	protected static  $tblname = "tblapplicants";
 
 	function dbfields () {

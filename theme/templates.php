@@ -69,7 +69,7 @@
                     $notif =isset($showNotif->COUNTNOTIF) ? $showNotif->COUNTNOTIF : 0;
 
 
-                    $applicant = new Applicants();
+                    $applicant = new Applicant();
                     $appl  = $applicant->single_applicant($_SESSION['APPLICANTID']);
 
                     $sql ="SELECT count(*) as 'COUNT' FROM `tbljobregistration` WHERE `PENDINGAPPLICATION`=0 AND `HVIEW`=0 AND `APPLICANTID`='{$appl->APPLICANTID}'";

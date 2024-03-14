@@ -1,5 +1,5 @@
 <?php
-defined('server') ? null : define("server", "opportunityjunction.mysql.database.azure.com");
+defined('server') ? null : define("server", "apache001.mysql.database.azure.com");
 defined('user') ? null : define ("user", "shubhamj") ;
 defined('pass') ? null : define("pass","omkar@29");
 defined('database_name') ? null : define("database_name", "erisdb") ;

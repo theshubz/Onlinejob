@@ -12,11 +12,9 @@
 	}
 	function redirect($location=Null){
 		if($location!=Null){
-			echo "<script>
-					window.location='{$location}'
-				</script>";	
+			header("Location: {$location}");
 		}else{
-			echo 'error location';
+			header("Location: {$location}");
 		}
 		 
 	}
